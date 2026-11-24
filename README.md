@@ -1,24 +1,24 @@
-# Distributed File Storage System
+# 📁 Distributed File Storage System
 
 An educational distributed file storage system built for the **Computer Networks Lab (24B15CS313)** at Jaypee Institute of Information Technology, Noida.
 
 The project demonstrates how a coordinator can split files into chunks, distribute those chunks across independent storage nodes, maintain replicas, and reconstruct the original file during download.
 
-## Features
+## ✨ Features
 
-- Client-server communication over HTTP/TCP
-- Coordinator and storage-node architecture
-- Fixed-size file chunking using 1 MiB chunks
-- Round-robin placement across available storage nodes
-- Replication factor of 2
-- SHA-256 integrity checks for chunks and complete files
-- Storage-node registration and periodic heartbeats
-- Replica fallback when a primary node is unavailable
-- SQLite metadata persistence
-- React dashboard for upload, download, deletion, node status, and metrics
-- Docker Compose deployment and local process-based deployment
+- 🌐 Client-server communication over HTTP/TCP
+- 🏗️ Coordinator and storage-node architecture
+- 🧩 Fixed-size file chunking using 1 MiB chunks
+- 🔄 Round-robin placement across available storage nodes
+- 📚 Replication factor of 2
+- 🔐 SHA-256 integrity checks for chunks and complete files
+- 💓 Storage-node registration and periodic heartbeats
+- 🛟 Replica fallback when a primary node is unavailable
+- 🗄️ SQLite metadata persistence
+- 🖥️ React dashboard for upload, download, deletion, node status, and metrics
+- 🐳 Docker Compose deployment and local process-based deployment
 
-## Architecture
+## 🏛️ Architecture
 
 ```text
                          HTTP
@@ -44,9 +44,9 @@ The project demonstrates how a coordinator can split files into chunks, distribu
 
 The browser communicates with the coordinator. Storage nodes communicate with the coordinator and provide chunk-level operations.
 
-## Workflow
+## 🔁 Workflow
 
-### Upload
+### ⬆️ Upload
 
 1. The browser sends the file to `POST /upload`.
 2. The coordinator splits the file into 1 MiB chunks.
@@ -56,7 +56,7 @@ The browser communicates with the coordinator. Storage nodes communicate with th
 6. File and chunk metadata is committed to SQLite.
 7. The coordinator returns the `file_id`, checksum, chunk count, and replication factor.
 
-### Download
+### ⬇️ Download
 
 1. The browser requests `GET /download/{file_id}`.
 2. The coordinator loads the ordered chunk list from SQLite.
@@ -67,7 +67,7 @@ The browser communicates with the coordinator. Storage nodes communicate with th
 
 If one node is unavailable, the coordinator can use another replica. If every replica for a required chunk is unavailable or corrupted, the download fails.
 
-## Technology stack
+## 🛠️ Technology stack
 
 | Area | Tools and technologies |
 |---|---|
@@ -111,7 +111,7 @@ distributed-file-storage/
 └── README.md
 ```
 
-## Requirements
+## 📋 Requirements
 
 Choose one deployment method:
 
@@ -119,7 +119,7 @@ Choose one deployment method:
 - **Local:** Python 3.9+, Node.js 18+, and npm
 - **Windows shortcut:** Python, Node.js/npm, and the included `start.bat`
 
-## Quick start with Docker
+## 🚀 Quick start with Docker
 
 From the project directory:
 
@@ -151,7 +151,7 @@ Docker uses named volumes for coordinator metadata and node data. To also remove
 docker compose down -v
 ```
 
-## Local development without Docker
+## 💻 Local development without Docker
 
 Create and activate a virtual environment:
 
@@ -183,7 +183,7 @@ npm start
 
 The frontend is available at <http://localhost:3000>.
 
-### Windows launcher
+### 🪟 Windows launcher
 
 After dependencies are installed, the included launcher can start all services in separate command windows:
 
@@ -193,7 +193,7 @@ After dependencies are installed, the included launcher can start all services i
 
 The launcher is intended for Windows development and clears processes listening on ports 3000 and 8000-8003 before starting.
 
-## API overview
+## 🔌 API overview
 
 The coordinator exposes interactive documentation at `/docs`.
 
@@ -220,7 +220,7 @@ Each storage node exposes:
 | `DELETE` | `/chunks/{chunk_id}` | Delete a chunk |
 | `GET` | `/chunks` | List chunks on the node |
 
-## Configuration
+## ⚙️ Configuration
 
 Coordinator settings are defined in `coordinator/main.py`:
 
@@ -242,7 +242,7 @@ Storage nodes use these environment variables:
 | `STORAGE_DIR` | `data/node_a` | Directory containing chunk files |
 | `HEARTBEAT_INTERVAL` | `10` | Heartbeat period in seconds |
 
-## Testing
+## 🧪 Testing
 
 Start the full system first, then run:
 
